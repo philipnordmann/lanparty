@@ -1,0 +1,2 @@
+# lanparty
+A lanparty service
