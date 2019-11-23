@@ -56,6 +56,11 @@ def create_env_file(var_ips, services):
             if arg != 'ip_var':
                 insert = kv.format(arg.upper(), services[service][arg])
                 env_list.append(insert)
+    
+    for setting in GENERAL_CONFIG:
+        if setting not in ['start_host', 'end_host']:
+            insert = kv.format(setting.upper(), GENERAL_CONFIG[setting])
+            env_list.append(insert)
 
     with open('.env', 'w') as env_file:
         env_file.write('\n'.join(env_list))
@@ -116,7 +121,7 @@ def start(services, interface, netplanfile):
     i = 0
     freeips = [var_ips[s]['ip_netmask'] for s in var_ips.keys()]
     add_ips(netplanfile, freeips, interface)
-    subprocess.call(['netplan', 'apply'])
+    # subprocess.call(['netplan', 'apply'])
 
     create_compose(services)
     create_env_file(var_ips, services)
@@ -148,6 +153,8 @@ def main():
     START_HOST = int(config['general']['start_host'])
     global END_HOST
     END_HOST = int(config['general']['end_host'])
+    global GENERAL_CONFIG
+    GENERAL_CONFIG = config['general']
 
     if '*' not in args.services:
         wanted_services = [s in args.services for s in found_services]
