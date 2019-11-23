@@ -157,7 +157,7 @@ def main():
     GENERAL_CONFIG = config['general']
 
     if '*' not in args.services:
-        wanted_services = [s in args.services for s in found_services]
+        wanted_services = list(filter(lambda s: s in found_services, args.services))
     else:
         wanted_services = found_services
 
