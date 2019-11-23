@@ -121,7 +121,7 @@ def start(services, interface, netplanfile):
     i = 0
     freeips = [var_ips[s]['ip_netmask'] for s in var_ips.keys()]
     add_ips(netplanfile, freeips, interface)
-    # subprocess.call(['netplan', 'apply'])
+    subprocess.call(['netplan', 'apply'])
 
     create_compose(services)
     create_env_file(var_ips, services)
