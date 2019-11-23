@@ -4,7 +4,7 @@ steamcache-dns:
     environment:
       - UPSTREAM_DNS=${SERVICES_IP}
       - USE_GENERIC_CACHE=true
-      - LANCACHE_IP="${LANCACHE_IP}"
+      - LANCACHE_IP=${LANCACHE_IP}
     ports:
       - "${LANCACHE_IP}:53:53/udp"
 
