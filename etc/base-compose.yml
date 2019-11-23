@@ -13,38 +13,13 @@ services:
     ports:
       - "${SERVICES_IP}:53:53/udp"
 
-  steamcache-dns:
-    restart: unless-stopped
-    image: lancachenet/lancache-dns:latest
-    environment:
-      - UPSTREAM_DNS=${SERVICES_DNS}
-      - USE_GENERIC_CACHE=true
-      - LANCACHE_IP="${LANCACHE_IP}"
-    ports:
-      - "${LANCACHE_IP}:53:53/udp"
-
-  lancache:
-    restart: unless-stopped
-    image: lancachenet/monolithic:latest
-    volumes:
-        - ./cache/data:/data/cache
-        - ./cache/logs:/data/logs
-    ports:
-      - "${LANCACHE_IP}:80:80"
-  
-  sniproxy:
-    restart: unless-stopped
-    image: lancachenet/sniproxy:latest
-    ports:
-      - "443:443"
-
 # Party support
 
   party-web:
     restart: unless-stopped
     image: nginx
     ports:
-      - ${PARTY_IP}:80:80
+      - ${SERVICES_IP}:80:80
 
 
   
