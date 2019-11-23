@@ -1,0 +1,11 @@
+ttt-server:
+    restart: unless-stopped
+    image: refractix/ttt:latest
+    ports:
+      - ${GAMES_IP}:27015:27015/udp
+      - ${GAMES_IP}:27015:27015/tcp
+    environment:
+      - WORKSHOP_COLLECTION_ID="${TTT_WORKSHOP_COLLECTION_ID}"
+      - AUTH_KEY="${TTT_AUTH_KEY}"
+    volumes:
+      - ./data/ttt/data/:/home/steam/data/

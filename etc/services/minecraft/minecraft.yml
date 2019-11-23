@@ -1,0 +1,7 @@
+minecraft-server:
+    restart: unless-stopped
+    image: refractix/mc-server:latest
+    volumes:
+      - ${MINECRAFT_ETC_VOLUME}:/opt/minecraft/etc
+    ports:
+      - "${GAMES_IP}:25565:25565"
