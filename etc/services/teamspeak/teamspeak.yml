@@ -2,9 +2,9 @@ teamspeak-server:
     restart: unless-stopped
     image: teamspeak
     ports:
-      - ${SERVIES_IP}:9987:9987/udp
-      - ${SERVIES_IP}:10011:10011
-      - ${SERVIES_IP}:30033:30033
+      - ${SERVICES_IP}:9987:9987/udp
+      - ${SERVICES_IP}:10011:10011
+      - ${SERVICES_IP}:30033:30033
     environment:
       - TS3SERVER_DB_PLUGIN=ts3db_mariadb
       - TS3SERVER_DB_SQLCREATEPATH=create_mariadb
