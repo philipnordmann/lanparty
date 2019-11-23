@@ -8,4 +8,4 @@ ttt-server:
       - WORKSHOP_COLLECTION_ID="${TTT_WORKSHOP_COLLECTION_ID}"
       - AUTH_KEY="${TTT_AUTH_KEY}"
     volumes:
-      - ./data/ttt/data/:/home/steam/data/
+      - ${TTT_DATA_VOLUME}:/home/steam/data/
